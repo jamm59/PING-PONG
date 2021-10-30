@@ -1,10 +1,7 @@
 import pygame
 from pygame.constants import *
 from variables import *
-from ball import Ball
-from paddle import Paddle
 from game import *
-import random
 
 
 def draw_menu(*args,**kwargs):
@@ -42,7 +39,7 @@ def menu_main():
                 if pygame.Rect.collidepoint(btn1,mpos):
                     game_ui()
                 if pygame.Rect.collidepoint(btn2,mpos):
-                    print('Settings')
+                    settings()
                 if pygame.Rect.collidepoint(btn3,mpos):
                     running = False
 
