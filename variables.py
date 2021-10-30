@@ -1,7 +1,13 @@
 import pygame
 pygame.font.init()
+FPS = 60
+clock = pygame.time.Clock()
+MENU_V = ['Play','Settings','Quit']
+M_FONT = pygame.font.SysFont('Calibri', 40)
 FONT = pygame.font.SysFont('Calibri', 35)
+FONT2 = pygame.font.SysFont('Calibri', 60)
 WHITE = (255,255,255)
+BLACK = (0,0,0)
 BG_COLOR = (255,213,213)
 DIR = 'assets'
 S_WIDTH  = 900

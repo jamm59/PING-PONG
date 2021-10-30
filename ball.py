@@ -20,3 +20,14 @@ class Ball:
     def collide(self,typ):
         if pygame.Rect.colliderect(self.ball,typ):
             self.x = -self.x
+
+    def speed_up(self):
+        if '-' in str(self.x):
+            self.x = int(f'-{int(str(self.x)[1:]) + 1}')
+        else:
+            self.x += 1
+
+        if '-' in str(self.y):
+            self.y = int(f'-{int(str(self.y)[1:]) + 1}')
+        else:
+            self.y += 1
