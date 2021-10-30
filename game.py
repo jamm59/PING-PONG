@@ -87,5 +87,3 @@ def game_ui():
         if not draw_win(left,right,m_ball,text):
             pygame.time.delay(2000)
             run = False
-
-    pygame.quit()
