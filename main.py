@@ -1,10 +1,32 @@
 from variables import *
 from game import *
 from settings import settings
-from quit import *
+import os
+
+CLICKED_QUIT = False
+
+def draw_quit(box):
+    global CLICKED_QUIT,bol
+    q_text = pygame.font.SysFont('Calibri', 30)
+    pygame.draw.rect(WINDOW,WHITE,box)
+    WINDOW.blit(q_text.render("Are you sure you ",1,BLACK),(box.x + 80,box.height // 2 + 30 ))
+    WINDOW.blit(q_text.render("want to Exit ?",1,BLACK),(box.x + 100,box.height // 2 + 70 ))
+    yes = YES.get_rect(center=(box.x+100,box.height // 2 + 150))
+    no = NO.get_rect(center=(box.x+250,box.height // 2 + 150))
+    WINDOW.blit(YES,yes)
+    WINDOW.blit(NO,no)
+    mouse = pygame.mouse
+    if mouse.get_pressed()[0]:
+        if pygame.Rect.collidepoint(yes, mouse.get_pos()):
+            bol = True
+            pygame.quit()
+            os.sys.exit()
+        elif pygame.Rect.collidepoint(no, mouse.get_pos()):
+            CLICKED_QUIT = False
+            bol = False
 
 
-def draw_menu(new,**kwargs):
+def draw_menu(**kwargs):
     WINDOW.fill(BG_COLOR)
     title = pygame.font.SysFont('Calibri', 60)
     title.set_bold(50)
@@ -20,7 +42,7 @@ def draw_menu(new,**kwargs):
             WINDOW.blit(FONT.render(MENU_V[i],1,WHITE),(value.x + 20, value.y + 5))
 
     if CLICKED_QUIT:
-        draw_quit(BOX,new)
+        draw_quit(BOX)
 
     pygame.display.update()
 
@@ -33,7 +55,6 @@ def menu_main():
     btn2 = pygame.Rect(btnx,280, btnw,btnh)
     btn3 = pygame.Rect(btnx,350, btnw,btnh)
     running = True
-    new_e = None
     while running:
         clock.tick(FPS)
         for event in pygame.event.get():
@@ -43,14 +64,13 @@ def menu_main():
             if event.type == MOUSEBUTTONUP:
                 mpos = pygame.mouse.get_pos()
                 if pygame.Rect.collidepoint(btn1,mpos):
-                    game_ui()
+                    game_ui(draw_quit)
                 if pygame.Rect.collidepoint(btn2,mpos):
                     settings()
                 if pygame.Rect.collidepoint(btn3,mpos):
                     CLICKED_QUIT = True
-                    new_e = event
 
-        draw_menu(new_e,a=btn1,b=btn2,c=btn3)
+        draw_menu(a=btn1,b=btn2,c=btn3)
     pygame.quit()
 
 if __name__ == '__main__':

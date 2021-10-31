@@ -23,7 +23,7 @@ YES = pygame.transform.scale(pygame.image.load(f'{DIR}/yes.png'),(D_WIDTH,D_HEIG
 NO = pygame.transform.scale(pygame.image.load(f'{DIR}/no.png'),(D_WIDTH,D_HEIGHT))
 BORDER = pygame.Rect(S_WIDTH // 2, 0, 5,S_HEIGHT)
 WINDOW = pygame.display.set_mode((S_WIDTH,S_HEIGHT))
-BOX = pygame.Rect(S_WIDTH // 2 - 210, 0, 400, 200)
-CLICKED_QUIT = False
+BOX = pygame.Rect(S_WIDTH // 2 - 210, 100, 400, 200)
+
 
 

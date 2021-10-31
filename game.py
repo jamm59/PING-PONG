@@ -3,7 +3,6 @@ from ball import Ball
 from paddle import Paddle
 import random
 
-
 def draw_win(left,right,ball,text):
     WINDOW.fill(BG_COLOR)
     pygame.draw.rect(WINDOW,(255,255,255),BORDER)
@@ -38,18 +37,21 @@ def check(typ,num):
 
 
 
-def game_ui():
+def game_ui(func):
+    bol = None
     pygame.display.set_caption('PING PONG')
     run = True
     left  = Paddle(LEFT_P,(30, S_HEIGHT // 2 -100))
     right = Paddle(RIGHT_P, (S_WIDTH - 30, S_HEIGHT // 2 -50 ))
     m_ball = Ball()
     pause = False
+    quit_c = False
     while run:
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == QUIT:
-                run = False
+                pause = True
+                quit_c = True
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     run = False
@@ -57,7 +59,11 @@ def game_ui():
                     global BG_COLOR
                     BG_COLOR = (random.randint(0,255),random.randint(0,255),random.randint(0,255))
                     pause = not pause
-
+        if quit_c:
+            func(BOX)
+            if not bol:
+                quit_c = False
+            pygame.display.update()
         if pause:
             continue
 
