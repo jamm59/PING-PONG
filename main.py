@@ -1,10 +1,10 @@
-import pygame
-from pygame.constants import *
 from variables import *
 from game import *
+from settings import settings
+from quit import *
 
 
-def draw_menu(*args,**kwargs):
+def draw_menu(new,**kwargs):
     WINDOW.fill(BG_COLOR)
     title = pygame.font.SysFont('Calibri', 60)
     title.set_bold(50)
@@ -18,16 +18,22 @@ def draw_menu(*args,**kwargs):
         else:
             pygame.draw.rect(WINDOW,BLACK,value)
             WINDOW.blit(FONT.render(MENU_V[i],1,WHITE),(value.x + 20, value.y + 5))
+
+    if CLICKED_QUIT:
+        draw_quit(BOX,new)
+
     pygame.display.update()
 
 
 def menu_main():
+    global CLICKED_QUIT
     pygame.display.set_caption('Menu')
     btnx,btny,btnw,btnh = S_WIDTH // 2 - 120,'',150,50
     btn1 = pygame.Rect(btnx,210, btnw,btnh)
     btn2 = pygame.Rect(btnx,280, btnw,btnh)
     btn3 = pygame.Rect(btnx,350, btnw,btnh)
     running = True
+    new_e = None
     while running:
         clock.tick(FPS)
         for event in pygame.event.get():
@@ -41,11 +47,10 @@ def menu_main():
                 if pygame.Rect.collidepoint(btn2,mpos):
                     settings()
                 if pygame.Rect.collidepoint(btn3,mpos):
-                    running = False
+                    CLICKED_QUIT = True
+                    new_e = event
 
-
-
-        draw_menu(a=btn1,b=btn2,c=btn3)
+        draw_menu(new_e,a=btn1,b=btn2,c=btn3)
     pygame.quit()
 
 if __name__ == '__main__':

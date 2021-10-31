@@ -1,5 +1,3 @@
-import pygame
-from pygame.constants import *
 from variables import *
 from ball import Ball
 from paddle import Paddle

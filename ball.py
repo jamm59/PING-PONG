@@ -1,5 +1,3 @@
-import pygame
-from pygame.display import update
 from variables import *
 class Ball:
     def __init__(self):
