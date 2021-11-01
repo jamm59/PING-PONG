@@ -6,7 +6,9 @@ import os
 CLICKED_QUIT = False
 
 def draw_quit(box):
-    global CLICKED_QUIT,bol
+    with open('file.txt', 'w') as file:
+        file.write('2')
+    global CLICKED_QUIT
     q_text = pygame.font.SysFont('Calibri', 30)
     pygame.draw.rect(WINDOW,WHITE,box)
     WINDOW.blit(q_text.render("Are you sure you ",1,BLACK),(box.x + 80,box.height // 2 + 30 ))
@@ -18,12 +20,17 @@ def draw_quit(box):
     mouse = pygame.mouse
     if mouse.get_pressed()[0]:
         if pygame.Rect.collidepoint(yes, mouse.get_pos()):
-            bol = True
+            with open('file.txt', 'w') as file:
+                file.write('0')
             pygame.quit()
             os.sys.exit()
         elif pygame.Rect.collidepoint(no, mouse.get_pos()):
             CLICKED_QUIT = False
-            bol = False
+            with open('file.txt', 'w') as file:
+                file.write('1')
+
+            
+
 
 
 def draw_menu(**kwargs):

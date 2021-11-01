@@ -38,7 +38,6 @@ def check(typ,num):
 
 
 def game_ui(func):
-    bol = None
     pygame.display.set_caption('PING PONG')
     run = True
     left  = Paddle(LEFT_P,(30, S_HEIGHT // 2 -100))
@@ -61,9 +60,14 @@ def game_ui(func):
                     pause = not pause
         if quit_c:
             func(BOX)
-            if not bol:
+            with open('file.txt' ,'r') as file:
+                data = file.read()
+            if int(data) == 1:
                 quit_c = False
+                pause = False
+                continue
             pygame.display.update()
+
         if pause:
             continue
 
