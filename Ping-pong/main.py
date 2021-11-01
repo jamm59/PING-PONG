@@ -65,10 +65,10 @@ def menu_main():
     while running:
         clock.tick(FPS)
         for event in pygame.event.get():
-            if event.type == pygame.locals.QUIT:
+            if event.type == QUIT:
                 running = False
 
-            if event.type == pygame.locals.MOUSEBUTTONUP:
+            if event.type == MOUSEBUTTONUP:
                 mpos = pygame.mouse.get_pos()
                 if pygame.Rect.collidepoint(btn1,mpos):
                     game_ui(draw_quit)
