@@ -10,7 +10,7 @@ def draw_quit(box):
         file.write('2')
     global CLICKED_QUIT
     q_text = pygame.font.SysFont('Calibri', 30)
-    pygame.draw.rect(WINDOW,WHITE,box)
+    pygame.draw.rect(WINDOW,WHITE,box,border_radius=7)
     WINDOW.blit(q_text.render("Are you sure you ",1,BLACK),(box.x + 80,box.height // 2 + 30 ))
     WINDOW.blit(q_text.render("want to Exit ?",1,BLACK),(box.x + 100,box.height // 2 + 70 ))
     yes = YES.get_rect(center=(box.x+100,box.height // 2 + 150))
@@ -42,10 +42,10 @@ def draw_menu(**kwargs):
     WINDOW.blit(M_FONT.render('MENU', 1, WHITE),(S_WIDTH // 2 - 100,  150))
     for i,(key,value) in enumerate(kwargs.items()):
         if i == 0 or i % 2 == 0:
-            pygame.draw.rect(WINDOW,WHITE,value)
+            pygame.draw.rect(WINDOW,WHITE,value,border_radius=6)
             WINDOW.blit(FONT.render(MENU_V[i],1,BLACK),(value.x + 50, value.y + 5))
         else:
-            pygame.draw.rect(WINDOW,BLACK,value)
+            pygame.draw.rect(WINDOW,BLACK,value,border_radius=6)
             WINDOW.blit(FONT.render(MENU_V[i],1,WHITE),(value.x + 20, value.y + 5))
 
     if CLICKED_QUIT:
@@ -67,7 +67,8 @@ def menu_main():
         for event in pygame.event.get():
             if event.type == QUIT:
                 running = False
-
+            # if event.type == VIDEORESIZE:
+            #     pygame.display.set_mode((int(data[0].strip('\n')),int(data[1].strip('\n'))))
             if event.type == MOUSEBUTTONUP:
                 mpos = pygame.mouse.get_pos()
                 if pygame.Rect.collidepoint(btn1,mpos):

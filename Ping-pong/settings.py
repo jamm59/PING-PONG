@@ -10,10 +10,10 @@ def draw_settings():
     w = S_WIDTH // 2 - 120
     for i in range(0,len(SETTINGS_INFO)):
         if i == 0 or i % 2 == 0:
-            pygame.draw.rect(WINDOW,WHITE,pygame.Rect(w,h,150,50))
+            pygame.draw.rect(WINDOW,WHITE,pygame.Rect(w,h,150,50),border_radius=6)
             WINDOW.blit(FONT.render(SETTINGS_INFO[i],1,BLACK),(w + 10, h + 7))
         else:
-            pygame.draw.rect(WINDOW,BLACK,pygame.Rect(w,h,150,50))
+            pygame.draw.rect(WINDOW,BLACK,pygame.Rect(w,h,150,50),border_radius=6)
             WINDOW.blit(FONT.render(SETTINGS_INFO[i],1,WHITE),(w + 10, h + 7))
         if len(RECT) < 5:
             RECT.append(pygame.Rect(w,h,150,50))
