@@ -4,6 +4,10 @@ pygame.font.init()
 FPS = 60
 clock = pygame.time.Clock()
 MENU_V = ['Play','Settings','Quit']
+
+with open('screen.txt', 'r') as file:
+    data = file.readlines()
+
 SETTINGS_INFO = ['900x500','900x600','1000x600','1000x700','1200x700']
 M_FONT = pygame.font.SysFont('Calibri', 40)
 FONT = pygame.font.SysFont('Calibri', 35)
@@ -12,7 +16,7 @@ WHITE = (255,255,255)
 BLACK = (0,0,0)
 BG_COLOR = (255,213,213)
 DIR = 'H:/Ping-pong-master/Ping-pong/assets'
-S_WIDTH,S_HEIGHT  = 1000,500
+S_WIDTH,S_HEIGHT  = int(data[0].strip('\n')),int(data[1].strip('\n'))
 WIDTH,HEIGHT = 40,150
 D_WIDTH,D_HEIGHT = 40,40
 BALL = pygame.image.load(f'{DIR}/ball.png')
