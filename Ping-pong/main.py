@@ -39,7 +39,7 @@ def draw_menu(**kwargs):
     title.set_bold(50)
     WINDOW.blit(title.render('PING PONG',1,WHITE),(S_WIDTH // 2 - 200, 30))
     M_FONT.set_bold(2)
-    WINDOW.blit(M_FONT.render('MENU', 1, WHITE),(S_WIDTH // 2 - 100, S_HEIGHT // 2 - 100))
+    WINDOW.blit(M_FONT.render('MENU', 1, WHITE),(S_WIDTH // 2 - 100,  150))
     for i,(key,value) in enumerate(kwargs.items()):
         if i == 0 or i % 2 == 0:
             pygame.draw.rect(WINDOW,WHITE,value)
