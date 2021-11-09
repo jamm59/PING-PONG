@@ -20,6 +20,7 @@ def draw_settings():
         h += 70
     pygame.display.update()
 def settings():
+    global WINDOW,S_WIDTH,S_HEIGHT
     setting_on = True
     pygame.display.set_caption('Settings')
     while setting_on:
@@ -36,6 +37,8 @@ def settings():
                     if pygame.Rect.collidepoint(RECT[i],pos):
                         new_x = SETTINGS_INFO[i].split('x')[0]
                         new_y = SETTINGS_INFO[i].split('x')[1]
+                        S_WIDTH,S_HEIGHT = int(new_x),int(new_y)
+                        WINDOW = pygame.display.set_mode((S_WIDTH,S_HEIGHT), RESIZABLE)
                         with open('screen.txt','w') as file:
                             file.write(f'{new_x}\n{new_y}')
         draw_settings()
