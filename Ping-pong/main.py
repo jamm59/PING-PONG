@@ -55,9 +55,9 @@ def draw_menu(**kwargs):
 
 
 def menu_main():
-    global CLICKED_QUIT
+    global CLICKED_QUIT,S_WIDTH,S_HEIGHT
     pygame.display.set_caption('Menu')
-    btnx,btny,btnw,btnh = S_WIDTH // 2 - 120,'',150,50
+    btnx,btny,btnw,btnh = S_WIDTH // 2 - 120,0,150,50
     btn1 = pygame.Rect(btnx,210, btnw,btnh)
     btn2 = pygame.Rect(btnx,280, btnw,btnh)
     btn3 = pygame.Rect(btnx,350, btnw,btnh)
@@ -67,8 +67,9 @@ def menu_main():
         for event in pygame.event.get():
             if event.type == QUIT:
                 running = False
-            # if event.type == VIDEORESIZE:
-            #     pygame.display.set_mode((int(data[0].strip('\n')),int(data[1].strip('\n'))))
+            if event.type == VIDEORESIZE:
+                pass
+                # pygame.display.set_mode((int(data[0].strip('\n')),int(data[1].strip('\n'))))
             if event.type == MOUSEBUTTONUP:
                 mpos = pygame.mouse.get_pos()
                 if pygame.Rect.collidepoint(btn1,mpos):

@@ -1,6 +1,7 @@
 from variables import *
 RECT = []
 def draw_settings():
+    print(S_WIDTH,S_HEIGHT)
     global RECT
     WINDOW.fill(BG_COLOR)
     title = pygame.font.SysFont('Calibri', 60)
@@ -30,7 +31,8 @@ def settings():
                 setting_on = False
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    setting_on = False
+                    return (S_WIDTH,S_HEIGHT)
+                    # setting_on = False
             if event.type == MOUSEBUTTONUP:
                 for i in range(0, len(RECT)):
                     pos = pygame.mouse.get_pos()
